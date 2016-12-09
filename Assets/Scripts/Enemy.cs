@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour {
 	[SerializeField]
 	Image ImgHealth;
 	private Transform target;
-
 	[SerializeField]
 	Animator myAnimator;
 	[SerializeField]
@@ -27,10 +26,13 @@ public class Enemy : MonoBehaviour {
     Collider collision;
     int Health;
     float timeLeft;
+    GameObject Globals;
 
     public virtual void Start()
     {
-        Health = MAX_HEALTH;         
+        Globals = GameObject.Find( "Globals" );
+        Health = MAX_HEALTH;
+        GetTarget(GameObject.Find( "Player" ).transform); 
     }
     public void GetTarget(Transform newTarget)
     {
@@ -40,6 +42,7 @@ public class Enemy : MonoBehaviour {
     public virtual void Death()
     {
         timeLeft = 600;
+        Globals.GetComponent<Globals>().money += 10;
         agent.speed = 0;
         myAnimator.SetBool("IsWalking", false);
         myAnimator.SetTrigger("Die");

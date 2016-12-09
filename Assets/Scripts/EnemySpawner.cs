@@ -19,6 +19,6 @@ public class EnemySpawner : MonoBehaviour {
 	void SpawnEnemy () {
 		GameObject go = Instantiate(enemy, SpawnerPoint.transform.position, Quaternion.identity) as GameObject;
 		go.transform.position = SpawnerPoint.transform.position;
-		go.GetComponent<Enemy>().GetTarget(player.transform);
+		//go.GetComponent<Enemy>().GetTarget(player.transform);
 	}
 }

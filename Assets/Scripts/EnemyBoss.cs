@@ -15,6 +15,7 @@ public class EnemyBoss : Enemy
     public override void Death()
     {
         Globals.GetComponent<Globals>().trophy[trophy] = true;
+        Globals.GetComponent<Globals>().money += 100*trophy;
         Debug.Log("You now have Trophy " + trophy);
         base.Death();
     }

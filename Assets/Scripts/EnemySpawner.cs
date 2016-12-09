@@ -10,15 +10,15 @@ public class EnemySpawner : MonoBehaviour {
 	[SerializeField]
 	GameObject enemy;
     [SerializeField]
-	float spawnTime = 2f;
+	float spawnTime;
 
 	void Start () {
-        InvokeRepeating( "SpawnEnemy", Random.Range( 1, 30 ), Random.Range( 1, 30 ) );
+        InvokeRepeating( "SpawnEnemy", Random.Range(1,spawnTime), Random.Range(1, spawnTime));
 	}
 	
 	void SpawnEnemy () {
 		GameObject go = Instantiate(enemy, SpawnerPoint.transform.position, Quaternion.identity) as GameObject;
 		go.transform.position = SpawnerPoint.transform.position;
-		go.GetComponent<Enemy>().Damage(0, player.transform);
+		go.GetComponent<Enemy>().GetTarget(player.transform);
 	}
 }

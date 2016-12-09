@@ -10,7 +10,6 @@ public class Buttons : MonoBehaviour
     {
         bank = GameObject.Find("Globals");
     }
-
     public void ButtonShop_Clicked()
     {
         SceneManager.LoadScene("Shop");

@@ -21,7 +21,7 @@ public class GunControl : MonoBehaviour {
     }
 
     void Update () {
-		if (CrossPlatformInputManager.GetButtonDown("Fire1"))
+		if (CrossPlatformInputManager.GetButtonDown("Fire1") && Globals.GetComponent<Globals>().bullets > 0)
 		{
 			myAnimator.SetTrigger("Shoot");
 			myAudiosource.Play();

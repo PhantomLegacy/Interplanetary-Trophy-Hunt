@@ -19,8 +19,8 @@ public class Player : MonoBehaviour {
 		Health -= points;
 		ImgHealth.fillAmount = (float)Health / (float)MAX_HEALTH;
 		if (Health <= 0)
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		else
+            SceneManager.LoadScene("LevelSelect");
+        else
 		{
 			myAudioSource.clip = PlayerHurt;
 			myAudioSource.Play();

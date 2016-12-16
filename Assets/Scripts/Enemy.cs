@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 	[SerializeField]
-	int MAX_HEALTH = 100;
+	int MAX_HEALTH;
 	
 	[SerializeField]
 	Image ImgHealth;
@@ -21,15 +21,18 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     float attackDistance;
     [SerializeField]
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     [SerializeField]
     Collider collision;
+    [SerializeField]
+    public int defaultSpeed;
     int Health;
     float timeLeft;
     GameObject Globals;
 
     public virtual void Start()
     {
+        agent.speed = defaultSpeed;
         Globals = GameObject.Find( "Globals" );
         Health = MAX_HEALTH;
         GetTarget(GameObject.Find( "Player" ).transform); 
@@ -48,7 +51,7 @@ public class Enemy : MonoBehaviour {
         myAnimator.SetTrigger("Die");
         collision.enabled = false;
     }
-    public void Damage(int points, Transform newTarget)
+    public virtual void Damage(int points, Transform newTarget)
 	{
 		Health -= points;
 		ImgHealth.fillAmount = (float)Health / (float)MAX_HEALTH;
@@ -59,7 +62,7 @@ public class Enemy : MonoBehaviour {
             GetTarget(newTarget);
         }
 	}
-	void Update()
+	public virtual void  Update()
 	{
 		if (target)
 		{
